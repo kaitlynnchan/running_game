@@ -20,11 +20,19 @@ void updatePlayer() {
 
     if (c.contains("player", "oblivion") || c.contains("player", "spike") || c.contains("player", "spike up")) {
       player.setPosition(50, 50);
-      if (mycheckpoint != null) {
-        player.setPosition(mycheckpoint.getX(), mycheckpoint.getY());
-      }
+      
+      //if (mycheckpoint != null) {
+      //  player.setPosition(mycheckpoint.getX(), mycheckpoint.getY());
+      //}
+      //resettocheckpoint = true;
+      resettocheckpoint = 1;
+      //  //if(resettocheckpoint == true){
+      //  //  player.setPosition(c.length(), c.length());
+      //  //}
       tries += 1;
-    } 
+    }  else {
+      //resettocheckpoint = 2;
+    }
 
     if (c.contains("start teleporter")) {
       player.setPosition(teleporterx, teleportery);
