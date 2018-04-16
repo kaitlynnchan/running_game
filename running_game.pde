@@ -1,7 +1,3 @@
-//Kaitlynn Chan
-//2018-03-10
-//1-1
-
 import fisica.*;
 
 //fisica
@@ -32,20 +28,12 @@ PImage map;
 ArrayList<FBox> terrain;
 ArrayList<FBox> enemies;
 
-boolean w, a, s, d, upkey, leftkey, rightkey, downkey, spacekey;
+boolean upkey, leftkey, rightkey, spacekey;
 
 float dx;
 FBox player;
-FCheckpoint mycheckpoint = null;
+ArrayList<FCheckpoint> mycheckpoint;
 
-PImage[] run;
-PImage[] idle;
-PImage[] jump;
-PImage[] currentAction;
-PImage[] coinpics = new PImage[4];
-int costumeNumCoin = 0;
-int frame = 0;
-int coincollect = 0;
 int teleporting = 2;
 int tries = 1;
 
@@ -55,6 +43,7 @@ float teleporterx;
 float teleportery;
 
 boolean jumping = false;
+int resettocheckpoint = 2;
 
 void setup() {
   size(600, 200, FX2D);
@@ -107,12 +96,24 @@ void draw() {
   }
 
   //checkpoint is played
-  if (mycheckpoint != null) {
-    mycheckpoint.act();
-    if (mode == INTRO) {
-      world.remove(mycheckpoint);
-      mycheckpoint = null;
+  int n = mycheckpoint.size();
+  int i = 0;
+  while (i < n) {
+    //println("testing");
+    FCheckpoint c = mycheckpoint.get(i);
+    c.act();
+    //if (resettocheckpoint == 1) {
+    //  player.setPosition(c.x, c.y);
+    //  //c.reset();
+    //}
+    if(mode == INTRO){
+      world.remove(c);
     }
+    //if(resettocheckpoint == true){
+    //  player.setPosition(c.x, c.y);
+    //  resettocheckpoint = false;
+    //}
+    i++;
   }
   
 }
@@ -129,9 +130,7 @@ void mouseReleased() {
 
 void keyPressed() {
   if (mode == PLAYING) {
-    if (key == ' '){
-      mycheckpoint = new FCheckpoint();
-    }
+    if (key == ' ') mycheckpoint.add(new FCheckpoint(player.getX(), player.getY()));
     if (keyCode == LEFT) leftkey = true;
     if (keyCode == RIGHT) rightkey = true;
     if (keyCode == UP) upkey = true;
