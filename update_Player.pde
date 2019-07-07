@@ -1,15 +1,24 @@
 void updatePlayer() {
-  //key controls
+  //currentAction = run;
+  //dx += 200;
+
   if (leftkey == false) dx = 0;
   if (rightkey == false) dx = 0;
+  //if(upkey == false)
+  //if (spacekey == false) {
+  //  //currentAction = run;
+  //}
 
   if (leftkey == true) dx -= 200;
   if (rightkey == true) dx += 200;
-
-  if (upkey == true && jumping == true) player.setVelocity(player.getVelocityX(), -200);
+  //if (spacekey == true && jumping == true) {
+  //  player.setVelocity(player.getVelocityX(), -200);
+  //}
+  if(upkey == true && jumping == true) player.setVelocity(player.getVelocityX(), -200);
 
   player.setVelocity(dx, player.getVelocityY());
 
+  //boolean touchingWater = false;
   //contacting array
   ArrayList<FContact> contacts;
   contacts = player.getContacts();
@@ -17,26 +26,29 @@ void updatePlayer() {
   for (FContact c : contacts) {
     if (c.contains("ground")) jumping = true;
     if (c.contains("flag")) mode = WIN;
-
-    if (c.contains("player", "oblivion") || c.contains("player", "spike") || c.contains("player", "spike up")) {
+    if(c.contains("oblivion") || c.contains("spike") || c.contains("spike up")){
       player.setPosition(50, 50);
-      
-      //if (mycheckpoint != null) {
-      //  player.setPosition(mycheckpoint.getX(), mycheckpoint.getY());
-      //}
-      //resettocheckpoint = true;
-      resettocheckpoint = 1;
-      //  //if(resettocheckpoint == true){
-      //  //  player.setPosition(c.length(), c.length());
-      //  //}
+      if(mycheckpoint != null){
+        player.setPosition(mycheckpoint.getX(), mycheckpoint.getY());
+      }
+        
       tries += 1;
-    }  else {
-      //resettocheckpoint = 2;
     }
-
-    if (c.contains("start teleporter")) {
+    
+    if(c.contains("start teleporter")){
       player.setPosition(teleporterx, teleportery);
     }
+    //if (c.contains("player", "coin")) {
+    //  FBody a = c.getBody1();
+    //  FBody b = c.getBody2();
+    //  if (a == player) {
+    //    coincollect += 1;
+    //    world.remove(b);
+    //  } else {
+    //    coincollect += 1;
+    //    world.remove(b);
+    //  }
+    //}
   }
 }
 

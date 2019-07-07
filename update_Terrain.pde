@@ -61,9 +61,8 @@ void makeFlag() {
 void makeTeleporter() {
   FCircle b = new FCircle(gridSize);
   b.setPosition(x * gridSize + gridSize/2, y * gridSize + gridSize/2);
-  //b.setFillColor(green);
-  //b.setStrokeColor(black);
-  b.attachImage(teleporter);
+  b.setFillColor(green);
+  b.setStrokeColor(black);
   b.setStatic(true);
   b.setGrabbable(false);
   b.setSensor(true);
@@ -76,9 +75,8 @@ void makeTeleporterEnd() {
   teleporterx = x * gridSize + gridSize/2;
   teleportery = y * gridSize + gridSize/2;
   b.setPosition(teleporterx, teleportery);
-  b.attachImage(teleporter);
-  //b.setFillColor(lightgreen);
-  //b.setStrokeColor(black);
+  b.setFillColor(lightgreen);
+  b.setStrokeColor(black);
   b.setStatic(true);
   b.setGrabbable(false);
   b.setName("end teleporter");

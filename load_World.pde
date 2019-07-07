@@ -5,10 +5,6 @@ void loadWorld() {
   world = new FWorld(-1000, -1000, 10000, 10000);//-1000, -1000, 10000, 10000
   world.setGravity(0, 980);
 
-  terrain = new ArrayList<FBox>();
-  enemies = new ArrayList<FBox>();
-  mycheckpoint = new ArrayList<FCheckpoint>();
-  
   while (y < map.height) {
     color c = map.get(x, y);
     if (c == black) makeOblivion();
